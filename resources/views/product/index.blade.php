@@ -8,31 +8,34 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Listado de Categorias</title>
+    <title>Listado de Productos</title>
   </head>
   <body>
     <div class="container">
-    <h1>Listado de Categorias</h1>
-    <a href="{{ route('categories.create')}}" class="btn btn-success">Add</a>
+    <h1>Listado de Productos</h1>
+    <a href="{{ route('products.create')}}" class="btn btn-success">Add</a>
     <table class="table">
   <thead>
     <tr>
       <th scope="col">Codigo</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Descripcion</th>
-      <th scope="col">Acciones</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Categoria id</th>
     </tr>
   </thead>
   <tbody>
-    @foreach ($categories as $categorie)
+    @foreach ($products as $product)
     <tr>
-         <th scope="row">{{ $categorie->cate_id}}</th>
-         <td>{{ $categorie->nom_cate}}</td>
-         <td>{{ $categorie->descripcion}}</td>
+         <th scope="row">{{ $product->product_id}}</th>
+         <td>{{ $product->nombre}}</td>
+         <td>{{ $product->price}}</td>
+         <td>{{ $product->stock}}</td>
+         <td>{{ $product->cate_id}}</td>
          <td>
-          <a href=" {{ route("categories.edit" , ['categorie'=>$categorie->cate_id]) }} " 
+          <a href=" {{ route("products.edit" , ['product'=>$product->product_id]) }} " 
             class=" btn btn-info"> Edit </a></li>
-          <form action="{{ route('categories.destroy', ['categorie' => $categorie->cate_id])}}"
+          <form action="{{ route('products.destroy', ['product' => $product->product_id])}}"
             method="POST" style="display: inline-block">
             @method('delete')
             @csrf

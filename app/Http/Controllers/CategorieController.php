@@ -39,7 +39,7 @@ class CategorieController extends Controller
     {
         $categorie = new Categorie();
 
-        $categorie->nombre = $request->nombre;
+        $categorie->nom_cate = $request->name;
         $categorie->descripcion = $request->descripcion;
         $categorie->save();
         

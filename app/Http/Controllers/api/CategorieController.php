@@ -30,19 +30,9 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = Validator::make($request->all(),[
-            'nombre' => ['required', 'max:30', 'unique'],
-            'product_id' => ['required', 'numeric', 'min:1']
-        ]);
-
-        if ($validate->fails()){
-            return response()->json([
-                'msg' => 'Se produjo un error en la validacion de la informacion',
-                'statusCode' => 400
-            ]);
-        }
+       
         $categorie = new Categorie();
-        $categorie->nombre = $request->nombre;
+        $categorie->nom_cate = $request->nom_cate;
         $categorie->descripcion = $request->descripcion;
         $categorie->save();
         return json_encode(['categorie' => $categorie]);
@@ -77,7 +67,7 @@ class CategorieController extends Controller
     public function update(Request $request,  $id)
     {
         $validate = Validator::make($request->all(),[
-            'nombre' => ['required', 'max:30', 'unique'],
+            'nom_cate' => ['required', 'max:30', 'unique'],
             'product_id' => ['required', 'numeric', 'min:1']
         ]);
 
@@ -88,10 +78,7 @@ class CategorieController extends Controller
             ]);
         }
         
-        $categorie = Categorie::find($id);
-        if (is_null($categorie)){
-            return abort(404);
-        }
+        
         $categorie = Categorie::find($id);
         $categorie->nombre = $request->nombre;
         $categorie->descripcion = $request->descripcion;
@@ -107,12 +94,7 @@ class CategorieController extends Controller
      */
     public function destroy( $id)
     {
-        $categorie = Categorie::find($id);
-        if (is_null($categorie)){
-            return abort(404);
-        }
-        $categorie = Categorie::find($id);
-        $categorie->delete();
+    
 
         $categories = DB::table('categories')
         ->join('products', 'categories.cate_id', '=', 'products.product_id')
