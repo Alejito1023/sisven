@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Categorie;
+use App\Models\PayMode;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -95,11 +96,12 @@ class CategorieController extends Controller
     public function destroy( $id)
     {
     
-
-        $categories = DB::table('categories')
-        ->join('products', 'categories.cate_id', '=', 'products.product_id')
-        ->select('categories.*', 'products.nombre')
+        $pay_mode = PayMode::find($id);
+        $pay_mode->delete();
+        $pay_modes = DB::table('pay_mode')
+        ->join('invoices', 'pay_mode.id', '=', 'invoices.id')
+        ->select('pay_mode.*', 'invoices.number')
         ->get();
-        return json_encode(['categories'=>$categories, 'success'=>true]);
+        return json_encode(['pay_modes'=>$pay_modes, 'success'=>true]);
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PayModeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,5 +33,12 @@ Route::get('/products/create',[ProductController::class, 'create'])->name('produ
 Route::delete('/products/{product}',[ProductController::class, 'destroy'])->name('products.destroy');
 Route::put('/products/{product}', [ProductController::class,'update'])->name('products.update');
 Route::get('/products/{product}/edit', [ProductController::class,'edit'])->name('products.edit');
+
+Route::get('/pay_modes',[PayModeController::class, 'index'])->name('pay_modes.index');
+Route::post('/pay_modes',[PayModeController::class, 'store'])->name('pay_modes.store');
+Route::get('/pay_modes/create',[PayModeController::class, 'create'])->name('pay_modes.create');
+Route::delete('/pay_modes/{pay_mode}',[PayModeController::class, 'destroy'])->name('pay_modes.destroy');
+Route::put('/pay_modes/{pay_mode}', [PayModeController::class,'update'])->name('pay_modes.update');
+Route::get('/pay_modes/{pay_mode}/edit', [PayModeController::class,'edit'])->name('pay_modes.edit');
 
 require __DIR__.'/auth.php';
