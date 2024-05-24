@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pay_customers', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->char('document_number',15)->unique();
             $table->char('firts_name',50)->nullable();

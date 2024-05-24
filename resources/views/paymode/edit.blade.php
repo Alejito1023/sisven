@@ -13,12 +13,13 @@
   <body>
     <div class="container">
     <h1>Editar Metodo de Pago</h1>
-    <form method="POST" action="{{ route('pay_modes.store')}}">
+    <form method="POST" action="{{ route('pay_modes.update'[`pay_mode`=>$pay_mode->id])}}">
+        @method('put')
         @csrf
         <div class="mb-3">
           <label for="codigo" class="form-label">Id</label>
           <input type="text" class="form-control" id="id" aria-describedby="codigoHelp" name="id"
-          disabled="disabled" value="{{ $categorie->cate_id}}">
+          disabled="disabled" value="{{ $pay_mode->id}}">
           <div id="codigoHelp" class="form-text">Codigo Metodo de Pago</div>
         </div>
 

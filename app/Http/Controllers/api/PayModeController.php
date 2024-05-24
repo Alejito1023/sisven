@@ -14,7 +14,11 @@ class PayModeController extends Controller
      */
     public function index()
     {
-        //
+        $pay_modes = DB::table('pay_mode')
+        ->join('invoices', 'pay_mode.id', '=', 'invoices.id')
+        ->select('pay_mode.*', 'invoices.number')
+        ->get();
+        return json_encode(['pay_modes' =>$pay_modes]);
     }
 
     /**
@@ -26,6 +30,7 @@ class PayModeController extends Controller
 
         $pay_mode->name = $request->name;
         $pay_mode->observation = $request->observation;
+        
         $pay_mode->save();
         return json_encode(['pay_mode'=>$pay_mode]);
     }

@@ -13,7 +13,7 @@
   <body>
     <div class="container">
     <h1>Editar Categorias</h1>
-    <form method="POST" action="{{ route('categories.store')}}">
+    <form method="POST" action="{{ route('categories.update')}}">
         @csrf
         <div class="mb-3">
           <label for="codigo" class="form-label">Id</label>

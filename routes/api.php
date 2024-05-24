@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\ProductController;
 use App\Http\Controllers\api\PayModeController;
+use App\Http\Controllers\api\CustomerController;
+
 
 
 
@@ -31,3 +33,10 @@ Route::get('/pay_modes/create',[PayModeController::class, 'create'])->name('pay_
 Route::delete('/pay_modes/{pay_mode}',[PayModeController::class, 'destroy'])->name('pay_modes.destroy');
 Route::put('/pay_modes/{pay_mode}', [PayModeController::class,'update'])->name('pay_modes.update');
 Route::get('/pay_modes/{pay_mode}/edit', [PayModeController::class,'edit'])->name('pay_modes.edit');
+
+Route::get('/customers',[CustomerController::class, 'index'])->name('customers.index');
+Route::post('/customers',[CustomerController::class, 'store'])->name('customers.store');
+Route::get('/customers/create',[CustomerController::class, 'create'])->name('customers.create');
+Route::delete('/customers/{customer}',[CustomerController::class, 'destroy'])->name('customers.destroy');
+Route::put('/customers/{customer}', [CustomerController::class,'update'])->name('customers.update');
+Route::get('/customers/{customer}/edit', [CustomerController::class,'edit'])->name('customers.edit');

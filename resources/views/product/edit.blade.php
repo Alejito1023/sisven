@@ -8,17 +8,18 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Editar Categorias</title>
+    <title>Editar Productos</title>
   </head>
   <body>
     <div class="container">
-    <h1>Editar Categorias</h1>
-    <form method="POST" action="{{ route('categories.store')}}">
+    <h1>Editar Productos</h1>
+    <form method="POST" action="{{ route('products.update',[`product`=>$product->product_id])}}">
+        @method('put')
         @csrf
         <div class="mb-3">
             <label for="codigo" class="form-label">Codigo</label>
             <input type="text" class="form-control" id="id" aria-describedby="codigoHelp" name="id"
-            disabled="disabled">
+            disabled="disabled" value="{{ $product->product_id}}">
             <div id="codigoHelp" class="form-text">Codigo Producto</div>
           </div>
   
